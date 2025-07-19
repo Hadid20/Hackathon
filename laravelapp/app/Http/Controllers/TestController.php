@@ -10,6 +10,6 @@ class TestController extends Controller
     public function index()
     {
         $QR = QrCode::size(200)->generate('https://chatgpt.com/');
-        return view('', compact('QR'));
+        return view('page.semple', compact('QR'));
     }
 }
