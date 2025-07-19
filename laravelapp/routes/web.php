@@ -4,6 +4,7 @@ use App\Http\Controllers\AbesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\userAbsenController;
+use App\Models\Abes;
 use Illuminate\Support\Facades\Route;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -14,8 +15,12 @@ Route::get('/Qr', [TestController::class, 'index'])->name('qr-sample');
 
 Route::get('/test', function () {
     return view('welcome');
+
 });
 
+
+Route::get('/admin/top-rank', [AbesController::class, 'rangking'])->name('toprank');
+Route::get('/admin/top-rank/{name}', [AbesController::class, 'alasan_toprank'])->name('alasan_toprank');
 
 Route::resource('/admin', AbesController::class);
 Route::get('/login', function () {
@@ -29,7 +34,8 @@ Route::get('/register', function () {
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::get('/user', function () {
-    return view('user.index');
+    $qr = Abes::latest()->first();
+    return view('user.index', compact('qr'));
 })->name('userview');
 
 Route::get('/user/absen', function () {

@@ -6,6 +6,7 @@ use App\Models\Abes;
 use App\Models\UserAbsen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class userAbsenController extends Controller
 {
@@ -15,6 +16,8 @@ class userAbsenController extends Controller
     public function index()
     {
         //
+        $QR = QrCode::size(200)->generate('http://127.0.0.1:8000/user/absen/create');
+        return view('user.index', compact($QR));
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Abes;
 use App\Models\UserAbsen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class AbesController extends Controller
@@ -16,7 +17,7 @@ class AbesController extends Controller
     {
         //
         $data = Abes::latest()->first();
-        $QR = QrCode::size(200)->generate('');
+        $QR = QrCode::size(200)->generate('http://127.0.0.1:8000/user/absen/create');
         $users = UserAbsen::latest()->get();
         return view('Admin.index', compact('data', 'QR', 'users'));
     }
@@ -80,4 +81,31 @@ class AbesController extends Controller
     {
         //
     }
+    public function rangking()
+    {
+        $rangking = UserAbsen::select('nama', DB::raw('COUNT(*) as total_terlambat'))
+            ->where('status', 'terlambat')
+            ->groupBy('nama')
+            ->orderByDesc('total_terlambat')
+            ->get(10);
+
+        return view('admin.top', compact('rangking'));
+    }
+    public function alasan_toprank($name)
+    {
+
+        $data = UserAbsen::where('nama', $name)
+            ->where('status', ['terlambat', 'Tepat Waktu'])
+            ->orderByDesc('created_at')
+            ->get()
+        ;
+        // $user = UserAbsen::where('nama', $name)->count();
+        $nama = $name;
+
+        // $hasil = $user > 0 ? round(($data / $user) * 100, 2) : 0;
+
+
+        return view('admin.alasantop', compact('data', 'nama'));
+    }
+
 }
