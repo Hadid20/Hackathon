@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('nama');
             $table->string('shift');
             $table->string('status');
+            $table->string('alasan');
             $table->timestamps();
         });
     }

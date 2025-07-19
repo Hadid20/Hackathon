@@ -15,12 +15,10 @@ class AbesController extends Controller
     public function index()
     {
         //
-        // $data = Abes::latest()->first();
-        // // $link = url('/tujuan') . '?id=' . $data->id;
-        // $QR = QrCode::size(200)->generate($data->link);
-        // return view('Admin.index', compact('data', 'QR'));
+        $data = Abes::latest()->first();
+        $QR = QrCode::size(200)->generate('');
         $users = UserAbsen::latest()->get();
-        return view('Admin.index', compact('users'));
+        return view('Admin.index', compact('data', 'QR', 'users'));
     }
 
     /**
@@ -43,9 +41,12 @@ class AbesController extends Controller
             'shift' => 'required',
         ]);
         Abes::query()->delete();
-        Abes::create(($request->all()));
+        Abes::create([
+            'link' => route('absen.create'),
+            'shift' => $request->shift,
+        ]);
 
-        return redirect()->route('qr-sample');
+        return redirect()->route('admin.index');
     }
 
     /**

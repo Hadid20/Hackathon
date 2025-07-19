@@ -3,6 +3,7 @@
 use App\Http\Controllers\AbesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\userAbsenController;
 use Illuminate\Support\Facades\Route;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -34,4 +35,4 @@ Route::get('/user', function () {
 Route::get('/user/absen', function () {
     return view('user.absen');
 });
-Route::post('/user/absen', [AuthController::class, 'absen'])->name('userabsen');
+Route::resource('/user/absen', userAbsenController::class);

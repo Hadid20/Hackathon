@@ -9,6 +9,9 @@
 
 <body>
     <a href="{{ route('admin.create') }}">create qr</a>
+    <div>
+        {{-- {{ $QR}} --}}
+    </div>
     <table>
         <tr>
             <td>gambar</td>

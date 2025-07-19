@@ -48,17 +48,5 @@ class AuthController extends Controller
         return redirect()->route('userview');
     }
 
-    public function absen(Request $request)
-    {
-        $data = UserAbsen::create($request->all());
 
-        if ($request->hasFile('foto')) {
-            // $path = "gusti" . $request->file('foto')->getClientOriginalName();
-            $request->file('foto')->storeAs('/public/images/' . $$request->file('foto')->getClientOriginalName());
-            $data->foto = $request->file('foto')->getClientOriginalName();
-            $data->save();
-        }
-
-        return redirect()->route('userview');
-    }
 }

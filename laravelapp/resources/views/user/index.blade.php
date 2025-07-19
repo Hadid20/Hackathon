@@ -9,7 +9,7 @@
 
 <body>
     {{-- <h1>hallo {{ auth()->user()->name }}</h1> --}}
-    <a href="{{ route('userabsen') }}">Absen</a>
+    <a href="{{ route('absen.create') }}">Absen</a>
 
     <div id="my-camera"></div>
     <div id="result"></div>

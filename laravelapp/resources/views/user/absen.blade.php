@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <form action="{{ route('userabsen') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('absen.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('POST')
         <div>
@@ -29,11 +29,23 @@
         </div>
         <div>
             <label for="shift">shift</label>
-            <input type="text" name="shift" id="">
+            <select name=" shift" id="">
+                <option value="{{ $qr->shift }}">{{ $qr->shift }}</option>
+            </select>
         </div>
         <div>
             <label for="shift">status</label>
-            <input type="text" name="status" id="">
+            <select name="status" id="">
+                @if (\Carbon\Carbon::parse($qr->created_at)->diffInMinutes(now()) > 30)
+                <option value="Terlambat">Terlambat</option>
+                @else
+                <option value="Tepat Waktu">Tepat Waktu</option>
+                @endif
+            </select>
+        </div>
+        <div>
+            <label for="">Alasan:</label>
+            <input type="text" name="alasan">
         </div>
         <div>
             <button type="submit">Absen</button>
