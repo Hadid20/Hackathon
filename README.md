@@ -7,7 +7,9 @@ teknologi:
 
 cara instalasi : cukup di clone repository, kemudian masuk ke folder nya jalan kan
 <br/>
-- { php artisan migrate }
+``
+cmd
+php artisan migrate 
 php artisan serve
 
 fitur :
