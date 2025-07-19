@@ -6,7 +6,8 @@ teknologi:
     - tailwindcss
 
 cara instalasi : cukup di clone repository, kemudian masuk ke folder nya jalan kan
-{{ php artisan migrate }}
+<br/>
+- { php artisan migrate }
 php artisan serve
 
 fitur :
