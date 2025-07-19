@@ -33,11 +33,11 @@ fitur :
 
 dokumentasi
 
-user :
+user 
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/a15e2e07-466c-449e-b0d6-aba4a77b279a" />
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/869644d9-3095-4f4e-8106-98e58d9b6053" />
 
-admin :
+admin 
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/b4d59c45-b583-43b9-a248-5dffe4c1638d" />
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5fac576e-13a9-45c9-800a-23515e815cca" />
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/d96190bd-2acd-475c-a0e4-9f9a93cf0bf9" />
