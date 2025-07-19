@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Abes;
+use App\Models\UserAbsen;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -14,7 +15,12 @@ class AbesController extends Controller
     public function index()
     {
         //
-        return view('Admin.index');
+        // $data = Abes::latest()->first();
+        // // $link = url('/tujuan') . '?id=' . $data->id;
+        // $QR = QrCode::size(200)->generate($data->link);
+        // return view('Admin.index', compact('data', 'QR'));
+        $users = UserAbsen::latest()->get();
+        return view('Admin.index', compact('users'));
     }
 
     /**
@@ -36,14 +42,10 @@ class AbesController extends Controller
             'link' => 'required',
             'shift' => 'required',
         ]);
+        Abes::query()->delete();
+        Abes::create(($request->all()));
 
-        $data = Abes::create([
-            'link' => route('admin.index'),
-            'shift' => $request->shift
-        ]);
-
-        $QR = QrCode::size(200)->generate($data->link);
-        return redirect()->route('qr-sample', compact('QR'));
+        return redirect()->route('qr-sample');
     }
 
     /**

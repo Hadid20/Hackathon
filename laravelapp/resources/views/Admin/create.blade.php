@@ -14,6 +14,7 @@
         @method('POST')
         @csrf
         <Label>Shift</Label>
+        <input type="hidden" name="link" value="{{ route('admin.index') }}">
         <select name="shift" id="">
             <option value="pagi">Pagi</option>
             <option value="siang">siang</option>

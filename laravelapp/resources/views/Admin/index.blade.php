@@ -9,6 +9,25 @@
 
 <body>
     <a href="{{ route('admin.create') }}">create qr</a>
+    <table>
+        <tr>
+            <td>gambar</td>
+            <td>Name</td>
+            <td>shift</td>
+            <td>status</td>
+        </tr>
+
+        @forelse ($users as $item)
+        <tr>
+            <td><img height="200px" src="{{ asset('/storage/images/'. $item->foto) }}" alt=""></td>
+            <td>{{ $item->nama }}</td>
+            <td>{{ $item->shift }}</td>
+            <td>{{ $item->status }}</td>
+        </tr>
+        @empty
+
+        @endforelse
+    </table>
 </body>
 
 </html>

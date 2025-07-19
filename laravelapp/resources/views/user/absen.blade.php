@@ -4,22 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
-
     <title>Document</title>
 </head>
 
 <body>
-    <h1>HelloWorld</h1>
-    <div>{{ $QR }}</div>
-    <div id="my-camera"></div>
-    <input type=button value="Take Snapshot" onClick="take_snapshot()">
-    <input type="hidden" name="image" class="image-tag">
-    <div id="result"></div>
-    <img src="" alt="">
+    <form action="{{ route('userabsen') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        @method('POST')
+        <div>
+            <label for="">Foto</label>
+            <div id="my-camera"></div>
+            <input type=button value="Take Snapshot" onClick="take_snapshot()">
+            <input type="hidden" name="foto" class="image-tag">
+            <div id="result">
+
+            </div>
+        </div>
+        <div>
+            <label for="shift">nama</label>
+            <input type="text" name="nama" id="">
+        </div>
+        <div>
+            <label for="shift">shift</label>
+            <input type="text" name="shift" id="">
+        </div>
+        <div>
+            <label for="shift">status</label>
+            <input type="text" name="status" id="">
+        </div>
+        <div>
+            <button type="submit">Absen</button>
+        </div>
+    </form>
 
     <script>
         Webcam.set({
